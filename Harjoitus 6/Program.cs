@@ -26,10 +26,8 @@ namespace Harjoitus_6
             consumptionfinal = (consumption * distance) / 100;
             gascostfinal = consumptionfinal * gascost;
 
-            Console.Write("Gas consumption ");
-            Console.WriteLine(consumptionfinal);
-            Console.Write("Gas costs ");
-            Console.WriteLine(gascostfinal);
+            Console.WriteLine("Gas consumption: {0:F2} ", consumptionfinal);
+            Console.Write("Gas costs: {0:F2}", gascostfinal);
         }
     }
 }
