@@ -14,34 +14,76 @@ namespace Harjoitus_19
             char[] underlines = new char[10] { '¯', '¯', '¯', '¯', '¯', '¯', '¯', '¯', '¯', '¯' };
             char[] guesses = new char[10];
             char[] guesses_last = new char[10];
+            int guess_number = 0;
             bool loop = true;
             int fails = 0;
             char[] input = new char[1];
 
+        
+
             while (loop == true)
             {
+                Console.WriteLine();
+                Console.WriteLine(guesses);
+                Console.WriteLine(underlines);
+                Console.WriteLine();
                 Console.Write("Enter a CAPITAL letter: ");
+                
                 input[0] = Console.ReadKey().KeyChar;
-
-                for(int i = 0; i != 10; i++)
+                Console.WriteLine();
+                for (int i = 0; i != 10; i++)
                 {
                     if (input[0] == word[i])
                     {
+                        guess_number = i;
                         guesses[i] = word[i];
                         underlines[i] = ' ';
                     }
                 }
-                if (guesses == guesses_last)
+
+                if (guesses[guess_number] == guesses_last[guess_number])
                 {
-                    Console.WriteLine("Wrong!");
+                    Console.WriteLine(" Wrong");
                     fails++;
                 }
 
-                guesses = guesses_last;
+                switch (fails)
+                {
+                    case 1: Console.WriteLine("You can still fail THREE more times!"); break;
 
-                Console.WriteLine();
-                Console.WriteLine(guesses);
-                Console.WriteLine(underlines);
+                    case 2: Console.WriteLine("You can still fail TWO more times!"); break;
+
+                    case 3: Console.WriteLine("You can still fail ONE more time!"); break;
+
+                    case 4:
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("You're dead!");
+                            loop = false;
+                            break;
+                        }
+                }
+                for (int i = 0; i != 10; i++)
+                {
+                    if (guesses[i] == word[i])
+                    {
+                        if (i == 9)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine(guesses);
+                            Console.WriteLine(underlines);
+                            Console.WriteLine();
+                            Console.WriteLine("You win!");
+                            loop = false;
+                            break;
+                        }
+                    }
+     
+                    else
+                        break;
+                }
+
+                    Array.Copy(guesses, guesses_last, 10);
             }
 
 
